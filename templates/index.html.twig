@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - {{ titulo }}{% endblock %}
+
+{% block body %}
+    <h2>{{ titulo }}</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('lista_ferramentas') }}" class="btn btn-primary">Ferramentas</a>
+            <a href="{{ path('lista_tecnicos') }}" class="btn btn-primary">Técnicos</a>
+            <a href="{{ path('lista_servicos') }}" class="btn btn-primary">Serviço</a>
+            <a href="{{ path('lista_os') }}" class="btn btn-primary">Ordem de Serviço</a>
+        </div>
+    </div>
+{% endblock %}

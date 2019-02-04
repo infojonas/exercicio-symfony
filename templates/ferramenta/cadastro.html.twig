@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titulo }} - {% endblock %}
+
+{% block body %}
+    <h2>Cadastro de Ferramenta</h2>
+    <hr />
+    {% include 'ferramenta/_form.html.twig' %}
+{% endblock %}

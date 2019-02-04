@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titulo }} - {% endblock %}
+
+{% block body %}
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    <h2>{{ titulo }}</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('cadastra_servico') }}" class="btn btn-primary float-right">Cadastrar Serviço</a>
+        </div>
+    </div>
+    <table class="table table-striped table-hover mt-3">
+        <thead>
+        <tr>
+            <th>COD</th>
+            <th>Hidráulico</th>
+            <th>Elétrico</th>
+            <th>Pintura</th>
+            <th>Descrição</th>
+            <th>Tempo Médio</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for servico in servicos %}
+            <tr>
+                <td>{{ servico.id }}</td>
+                <td>{{ servico.getHidraulico }}</td>
+                <td>{{ servico.getEletrico }}</td>
+                <td>{{ servico.getPintura }}</td>
+                <td>{{ servico.getDescricao }}</td>
+                <td>{{ servico.getTempoMedio }}</td>
+                <td>
+                    <a class="btn btn-sm btn-success" href=""><i class="fa fa-paint-brush"></i></a>
+                    <a class="btn btn-sm btn-danger" href=""><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

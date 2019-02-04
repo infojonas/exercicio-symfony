@@ -1,0 +1,55 @@
+{{ form_start(
+    form
+) }}
+
+{% if not form.vars.valid %}
+    <div class="alert alert-danger">
+        {{ form_errors(form) }}
+    </div>
+{% endif %}
+
+<div class="form-group">
+    {{ form_label(form.desconto) }}
+    {{
+        form_widget(form.desconto, {
+            'attr': {
+                'onkeydown': 'mascara(this, mascaraNumero);'
+            }
+        })
+    }}
+    {{ form_errors(form.desconto) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.valor_total) }}
+    {{
+        form_widget(form.valor_total, {
+            'attr': {
+                'onkeydown': 'mascara(this, mascaraNumero);'
+            }
+        })
+    }}
+    {{ form_errors(form.valor_total) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.data_servico) }}
+    {{ form_widget(form.data_servico) }}
+    {{ form_errors(form.data_servico) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.tecnico) }}
+    {{ form_widget(form.tecnico) }}
+    {{ form_errors(form.tecnico) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.ferramenta) }}
+    {{ form_widget(form.ferramenta) }}
+    {{ form_errors(form.ferramenta) }}
+</div>
+
+{{  form_widget(form.enviar) }}
+
+{{ form_rest(form) }}

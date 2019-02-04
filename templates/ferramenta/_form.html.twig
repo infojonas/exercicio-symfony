@@ -1,0 +1,33 @@
+{{ form_start(
+    form, {
+        'attr': {'novalidate': 'novalidate'}
+    }
+) }}
+
+{% if not form.vars.valid %}
+    <div class="alert alert-danger">
+        {{ form_errors(form) }}
+    </div>
+{% endif %}
+
+<div class="form-group">
+    {{ form_label(form.nome_ferramenta) }}
+    {{ form_widget(form.nome_ferramenta) }}
+    {{ form_errors(form.nome_ferramenta) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.marca_ferramenta) }}
+    {{ form_widget(form.marca_ferramenta) }}
+    {{ form_errors(form.marca_ferramenta) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.aluguel_hora) }}
+    {{ form_widget(form.aluguel_hora) }}
+    {{ form_errors(form.aluguel_hora) }}
+</div>
+
+{{  form_widget(form.enviar) }}
+
+{{ form_rest(form) }}

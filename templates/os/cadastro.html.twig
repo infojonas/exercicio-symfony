@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titulo }} - {% endblock %}
+
+{% block body %}
+    <style>
+        input, label {
+            display: inline !important;
+        }
+        select#os_tecnico,
+        select#os_ferramenta {
+            width: auto;
+        }
+    </style>
+
+    <h2>Cadastro de Serviço</h2>
+
+    <hr />
+    {% include 'os/_form.html.twig' %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        {% for key, value in tecnicos %}
+        $('#os_tecnico').append(
+            $("<option>")
+                .val("{{ key }}")
+                .html("{{ value }}")
+        );
+        {% endfor %}
+
+        {% for key, value in ferramentas %}
+        $('#os_ferramenta').append(
+            $("<option>")
+                .val("{{ key }}")
+                .html("{{ value }}")
+        );
+        {% endfor %}
+
+        let obj, masc;
+
+        function mascara(objeto,mascara) {
+            obj = objeto;
+            masc = mascara;
+
+            setTimeout('executaMascara()',1);
+        }
+
+        function executaMascara() {
+            obj.value = masc(obj.value);
+        }
+
+        function mascaraNumero(num){
+            num = num.replace(/\D/g,"");
+
+            return num;
+        }
+    </script>
+{% endblock %}

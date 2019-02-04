@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - {{ titulo }}{% endblock %}
+
+{% block body %}
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    <h2>{{ titulo }}</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('cadastra_os') }}" class="btn btn-primary float-right">Cadastrar OS</a>
+        </div>
+    </div>
+    <table class="table table-striped table-hover mt-3">
+        <thead>
+        <tr>
+            <th>COD</th>
+            <th>Sequence</th>
+            <th>Desconto</th>
+            <th>Valor Total</th>
+            <th>Data do Serviço</th>
+            <th>Técnico</th>
+            <th>Ferramenta</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ordem in os %}
+            <tr>
+                <td>{{ ordem.id }}</td>
+                <td>{{ ordem.getSequence }}</td>
+                <td>{{ ordem.getDesconto }}</td>
+                <td>{{ ordem.getValorTotal }}</td>
+                <td>{{ ordem.getDataServico|date('d/m/Y') }}</td>
+                <td>{{ ordem.getTecnico }}</td>
+                <td>{{ ordem.getFerramenta }}</td>
+                <td>
+                    <a class="btn btn-sm btn-success" href=""><i class="fa fa-paint-brush"></i></a>
+                    <a class="btn btn-sm btn-danger" href=""><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
