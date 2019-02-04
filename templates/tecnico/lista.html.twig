@@ -10,10 +10,17 @@
         </div>
     {% endfor %}
 
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+        <div class="alert alert-warning">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
     <h2>{{ titulo }}</h2>
     <hr />
     <div class="row">
         <div class="col-md-12">
+            <a href="{{ path('home') }}" class="btn btn-primary float-left">Home</a>
             <a href="{{ path('cadastra_tecnico') }}" class="btn btn-primary float-right">Cadastrar Técnico</a>
         </div>
     </div>
@@ -37,8 +44,8 @@
                 <td>{{ tecnico.getDtNasc|date('d/m/Y') }}</td>
                 <td>R$ {{ tecnico.getValorHora|number_format(2,',','.') }}</td>
                 <td>
-                    <a class="btn btn-sm btn-success" href=""><i class="fa fa-paint-brush"></i></a>
-                    <a class="btn btn-sm btn-danger" href=""><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-sm btn-success" href="{{ path('edita_tecnico', {'id': tecnico.id}) }}"><i class="fa fa-paint-brush"></i></a>
+                    <a class="btn btn-sm btn-danger" href="{{ path('apaga_tecnico', {'id': tecnico.id}) }}"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
         {% endfor %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - {{ titulo }}{% endblock %}
+
+{% block body %}
+    <style>
+        select#servico_hidraulico,
+        select#servico_eletrico,
+        select#servico_pintura {
+            width: 80px;
+        }
+    </style>
+
+    <h2>Edição de Serviço - <small>{{ servico.getDescricao() }}</small></h2>
+    <hr />
+    {% include 'servico/_form.html.twig' %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        let obj, masc;
+
+        function mascara(objeto,mascara) {
+            obj = objeto;
+            masc = mascara;
+
+            setTimeout('executaMascara()',1);
+        }
+
+        function executaMascara() {
+            obj.value = masc(obj.value);
+        }
+
+        function mascaraNumero(num){
+            num = num.replace(/\D/g,"");
+
+            return num;
+        }
+    </script>
+{% endblock %}

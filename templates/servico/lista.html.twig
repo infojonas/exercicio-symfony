@@ -10,10 +10,17 @@
         </div>
     {% endfor %}
 
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+        <div class="alert alert-warning">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
     <h2>{{ titulo }}</h2>
     <hr />
     <div class="row">
         <div class="col-md-12">
+            <a href="{{ path('home') }}" class="btn btn-primary float-left">Home</a>
             <a href="{{ path('cadastra_servico') }}" class="btn btn-primary float-right">Cadastrar Serviço</a>
         </div>
     </div>
@@ -39,8 +46,8 @@
                 <td>{{ servico.getDescricao }}</td>
                 <td>{{ servico.getTempoMedio }}</td>
                 <td>
-                    <a class="btn btn-sm btn-success" href=""><i class="fa fa-paint-brush"></i></a>
-                    <a class="btn btn-sm btn-danger" href=""><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-sm btn-success" href="{{ path('edita_servico', {'id': servico.id}) }}"><i class="fa fa-paint-brush"></i></a>
+                    <a class="btn btn-sm btn-danger" href="{{ path('apaga_servico', {'id': servico.id}) }}"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
         {% endfor %}

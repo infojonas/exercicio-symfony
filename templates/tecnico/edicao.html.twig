@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titulo }} - {% endblock %}
+
+{% block body %}
+    <h2>Edição de Técnico - <small>{{ tecnico.getNomeCompleto() }}</small></h2>
+    <hr />
+    {% include 'tecnico/_form.html.twig' %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        let obj, masc;
+
+        function mascara(objeto,mascara) {
+            obj = objeto;
+            masc = mascara;
+
+            setTimeout('executaMascara()',1);
+        }
+
+        function executaMascara() {
+            obj.value = masc(obj.value);
+        }
+
+        function mascaraCpf(cpf){
+            cpf = cpf.replace(/\D/g,"");
+            cpf = cpf.replace(/(\d{3})(\d)/,"$1.$2");
+            cpf = cpf.replace(/(\d{3})(\d)/,"$1.$2");
+            cpf = cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
+
+            return cpf;
+        }
+
+        function mascaraNumero(num){
+            num = num.replace(/\D/g,"");
+
+            return num;
+        }
+    </script>
+{% endblock %}

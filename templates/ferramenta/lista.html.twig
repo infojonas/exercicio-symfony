@@ -10,10 +10,17 @@
         </div>
     {% endfor %}
 
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+        <div class="alert alert-warning">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
     <h2>{{ titulo }}</h2>
     <hr />
     <div class="row">
         <div class="col-md-12">
+            <a href="{{ path('home') }}" class="btn btn-primary float-left">Home</a>
             <a href="{{ path('cadastra_ferramenta') }}" class="btn btn-primary float-right">Cadastrar Ferramenta</a>
         </div>
     </div>
@@ -35,8 +42,8 @@
                 <td>{{ ferramenta.getMarcaFerramenta }}</td>
                 <td>R$ {{ ferramenta.getAluguelHora|number_format(2,',','.') }}</td>
                 <td>
-                    <a class="btn btn-sm btn-success" href=""><i class="fa fa-paint-brush"></i></a>
-                    <a class="btn btn-sm btn-danger" href=""><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-sm btn-success" href="{{ path('edita_ferramenta', {'id': ferramenta.id}) }}"><i class="fa fa-paint-brush"></i></a>
+                    <a class="btn btn-sm btn-danger" href="{{ path('apaga_ferramenta', {'id': ferramenta.id}) }}"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
         {% endfor %}

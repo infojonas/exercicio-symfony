@@ -58,7 +58,7 @@ class ServicoType extends AbstractType
                 ]
             ])
             ->add('enviar',SubmitType::class, [
-                'label' => 'Cadastrar',
+                'label' => 'Enviar',
                 'attr' => [
                     'class' => 'btn btn-primary'
                 ]
