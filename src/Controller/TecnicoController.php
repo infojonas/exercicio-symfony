@@ -42,6 +42,10 @@ class TecnicoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            $cpf = $_POST['tecnico']['cpf'];
+            $cpf = preg_replace('#[^0-9]#','',$cpf);
+            $tecnico->setCpf($cpf);
+
             $em->persist($tecnico);
             $em->flush();
 
